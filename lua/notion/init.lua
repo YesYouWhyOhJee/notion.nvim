@@ -87,7 +87,7 @@ local function initialiseFiles()
     local files = { "data.txt", "prev.txt", "saved.txt", "temp.md", "tempData.txt", "tempJson.json", "reminders.txt", "currentJob.txt" }
 
     -- Create directory if it doesn't exist
-    os.execute("mkdir -p " .. path)
+    vim.fn.mkdir(path, "p")
 
     -- Create files if they don't exist
     for _, file in ipairs(files) do
@@ -99,7 +99,8 @@ local function initialiseFiles()
     end
 
     -- Create data subdirectory if it doesn't exist
-    os.execute("mkdir -p " .. path .. "data/")
+    local dataspecificpath = vim.fn.stdpath("data") .. "/notion/data/"
+    vim.fn.mkdir(dataspecificpath, "p")
 end
 
 M.fileInit = initialiseFiles
